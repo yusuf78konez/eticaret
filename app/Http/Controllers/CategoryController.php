@@ -47,7 +47,7 @@ class CategoryController extends Controller
     $category->category_name = $request->category_name;
     $category->save();
     return back()->with([
-      'message' => "Kategori güncellendi."
+      'message' => "Kategori güncellendi.........."
     ]);
 
   }
