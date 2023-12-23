@@ -22,7 +22,7 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
        
-        $arr = ['category_name' => ['required', 'max:10', 'min:2']];
+        $arr = ['category_name' => ['required', 'max:50', 'min:2']];
 
         if ($this->category_id)
             $arr['category_id'] = "exists:App\Models\Category,id";

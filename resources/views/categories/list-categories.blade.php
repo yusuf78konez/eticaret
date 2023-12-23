@@ -32,10 +32,13 @@
                     echo '<ul>';
                     foreach ($categories as $cat) {
                         echo '<li>';
+                        echo "<a href='" . route('get-all-categories', $cat->id) . "'>";
                         echo $cat->category_name;
+                        echo '</a>';
                         kategoriler($cat->id);
+                
                         echo '</li>';
-                    }    
+                    }
                     echo '</ul>';
                 }
                 kategoriler();
@@ -55,9 +58,14 @@
 
                     </div>
                 @endif
+                <h4>
+                    @if (isset($category->category_name))
+                        <a href="{{route('get-one-category',[$category->id])}}"><i class="fa fa-edit text-warning"></i> {{$category->category_name}}</a>
+                    @endif
+                </h4>
                 <form action="{{ route('create-category') }}" method="post">
                     @csrf
-                    <input type="" name='category_id' value="{{ $category->id ?? '' }}" />
+                    <input type="hidden" name='category_id' value="{{ $category->id ?? '' }}" />
                     <div class="form-group">
                         <label for="category_name">Kategori Adı*</label>
                         <input name="category_name" class="form-control" id="category_name">
@@ -69,17 +77,18 @@
                 </form>
             </div>
             <div class="col-lg-4">
+                <h4>Alt kategoriler tablosu</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Düzenle</th>
+
                             <th>Kategori Adı</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
                             <tr>
-                                <td>sil</td>
+
                                 <td>
                                     <a href="{{ route('get-one-category', $category->id) }}">
                                         {{ $category->category_name }}
