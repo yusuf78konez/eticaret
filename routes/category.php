@@ -15,3 +15,6 @@ Route::put('kategori/{id}',[CategoryController::class,'update_category'])
 
 Route::post("kategoriler",[CategoryController::class,'create_category'])
 ->name("create-category");
+
+
+Route::post("ozellikler",[CategoryController::class,"create_property"])->name('create.property');

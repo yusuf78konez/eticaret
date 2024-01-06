@@ -14,5 +14,9 @@ class Category extends Model
         'category_name','category_id'
     ];
 
+    public function properties(){
+        return $this->hasMany(Property::class,'category_id','id');
+    }
+
  
 }

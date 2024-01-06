@@ -21,29 +21,76 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <?php
-                
-                function kategoriler($id = null)
-                {
-                    $categories = App\Models\Category::where('category_id', $id)->get();
-                    if (!isset($categories)) {
-                        return;
-                    }
-                    echo '<ul>';
-                    foreach ($categories as $cat) {
-                        echo '<li>';
-                        echo "<a href='" . route('get-all-categories', $cat->id) . "'>";
-                        echo $cat->category_name;
-                        echo '</a>';
-                        kategoriler($cat->id);
-                
-                        echo '</li>';
-                    }
-                    echo '</ul>';
-                }
-                kategoriler();
-                ?>
 
+                <div id="accordion">
+                    {{-- <div class="card mb-0">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                Collapsible Group Item #1
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                            <div class="card-body">
+                                Lorem ipsum..
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <?php
+                    function kategoriler($id = null)
+                    {
+                        $categories = App\Models\Category::where('category_id', $id)->get();
+                        if (!isset($categories)) {
+                            return;
+                        }
+                        echo '<ul>';
+                        foreach ($categories as $cat) {
+                            echo '<li>';
+                            echo "<a href='" . route('get-all-categories', $cat->id) . "'>";
+                            echo $cat->category_name;
+                            echo '</a>';
+                            kategoriler($cat->id);
+                    
+                            echo '</li>';
+                        }
+                        echo '</ul>';
+                    }
+                    
+                    function kategoriler1($id = null)
+                    {
+                        $categories = App\Models\Category::where('category_id', $id)->get();
+                        if (!isset($categories)) {
+                            return;
+                        }
+                        echo "<div class='card mb-0'>";
+                        foreach ($categories as $cat) {
+                            echo "<div class='card-header'>";
+                            echo "<a href='".route('get-all-categories', $cat->id)."'>$cat->category_name</a>";
+                            echo "<a class='card-link' data-toggle='collapse' href='#collapse$cat->id'>";
+                            echo "<i class='feather icon-align-justify'></i>";
+                            echo '</a>';
+                            echo '</div>';
+                    
+                            echo "<div id='collapse$cat->id' class='collapse multi-collapse' data-parent='#accordion'>";
+                            echo "<div class='card-body'>";
+                            kategoriler1($cat->id);
+                            echo '</div>';
+                            echo '</div>';
+                    
+                            // echo '<li>';
+                            // echo "<a href='" . route('get-all-categories', $cat->id) . "'>";
+                            // echo $cat->category_name;
+                            // echo '</a>';
+                            // kategoriler($cat->id);
+                    
+                            // echo '</li>';
+                        }
+                        echo '</div>';
+                    }
+                       kategoriler1();
+                    ?>
+
+                </div>
 
 
             </div>
@@ -60,7 +107,8 @@
                 @endif
                 <h4>
                     @if (isset($category->category_name))
-                        <a href="{{route('get-one-category',[$category->id])}}"><i class="fa fa-edit text-warning"></i> {{$category->category_name}}</a>
+                        <a href="{{ route('get-one-category', [$category->id]) }}"><i
+                                class="fa fa-edit text-warning"></i> {{ $category->category_name }}</a>
                     @endif
                 </h4>
                 <form action="{{ route('create-category') }}" method="post">
