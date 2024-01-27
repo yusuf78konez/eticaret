@@ -62,7 +62,7 @@ class CategoryController extends Controller
     $rules = [
       'property_name' => ['required', 'max:100'],
       'category_id' => 'exists:App\Models\Category,id',
-      'property_type' => Rule::in(['text', 'radio', 'enum'])
+     
     ];
 
     $request->validate($rules);
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     $property = new Property();
     $property->name = $request->property_name;
     $property->category_id = $request->category_id;
-    $property->type = $request->category_type;
+  
     $property->save();
     return back();
 

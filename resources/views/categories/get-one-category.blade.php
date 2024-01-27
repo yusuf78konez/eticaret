@@ -53,26 +53,7 @@
                                 <label for="property_name">Özellik Adı*</label>
                                 <input type="text" class="form-control" name="property_name" id="property_name">
                             </div>
-                            <div class="form-group">
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="category_type"
-                                            value="text">Metin
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="category_type"
-                                            value="radio">Tek seçim
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="category_type"
-                                            value="enum">Çok seçim
-                                    </label>
-                                </div>
-                            </div>
+                          
                             <button class="btn btn-primary">Kaydet</button>
                         </form>
                     </div>

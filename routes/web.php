@@ -10,8 +10,8 @@ Route::get("dashboard", function () {
     return view("dashboard");
 });
 
-
 require __DIR__."/category.php";
+require  __DIR__."/product.php";
 
 
 
